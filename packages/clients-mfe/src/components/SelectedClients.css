@@ -1,0 +1,130 @@
+/* Selected Clients Styles */
+.selected-header {
+  margin-bottom: 30px;
+}
+
+.selected-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 18px;
+}
+
+/* Selected Clients Grid */
+.selected-clients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.selected-client-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.selected-client-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.selected-client-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.selected-client-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.selected-client-salary, .selected-client-company {
+  font-size: 14px;
+  color: #666;
+}
+
+.selected-client-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.remove-btn {
+  width: 40px;
+  height: 40px;
+  border: 0px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background: white;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.remove-btn:hover {
+  background-color: #f1f3f5;
+}
+
+/* Clear All Button */
+.clear-all-btn {
+  width: 100%;
+  padding: 15px;
+  background: white;
+  color: #ff6b35;
+  border: 2px solid #ff6b35;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.clear-all-btn:hover {
+  background: #ff6b35;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .selected-clients-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selected-client-card {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .selected-title {
+    font-size: 20px;
+  }
+  
+  .empty-state {
+    font-size: 16px;
+    padding: 40px 20px;
+  }
+}
