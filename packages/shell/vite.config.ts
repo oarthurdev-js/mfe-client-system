@@ -12,39 +12,31 @@ const PRODUCTION_URLS = {
 };
 
 const DEVELOPMENT_URLS = {
-  authMfe: "http://localhost:5174/assets/remoteEntry.js",
-  clientsMfe: "http://localhost:5175/assets/remoteEntry.js",
-  designSystem: "http://localhost:5176/assets/remoteEntry.js"
+  authMfe: "http://localhost:5174/remoteEntry.js",
+  clientsMfe: "http://localhost:5175/remoteEntry.js",
+  designSystem: "http://localhost:5176/remoteEntry.js"
 };
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production';
   const remoteUrls = isProduction ? PRODUCTION_URLS : DEVELOPMENT_URLS;
-  
+
   return {
     plugins: [react(),
       federation({
         name: "shell",
-        remotes: remoteUrls,
-        shared: {
-          "react": {
-            singleton: true,
-            requiredVersion: "^18.0.0"
-          },
-          "react-dom": {
-            singleton: true,
-            requiredVersion: "^18.0.0"
-          },
-          "react-router-dom": {
-            singleton: true
-          }
-        }
+        remotes: {
+          authMfe: remoteUrls.authMfe,
+          clientsMfe: remoteUrls.clientsMfe,
+          designSystem: remoteUrls.designSystem
+        },
+        shared: ["react", "react-dom", "react-router-dom"]
       })
     ],
     build: {
       target: 'esnext',
-      minify: isProduction,
+      minify: false,
       cssCodeSplit: false,
       modulePreload: false,
       rollupOptions: {
