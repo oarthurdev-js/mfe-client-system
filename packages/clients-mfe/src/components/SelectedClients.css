@@ -138,6 +138,5 @@
 .client-actions-selected {
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
   width: 100%;
 }
