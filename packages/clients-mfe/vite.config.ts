@@ -20,8 +20,15 @@ export default defineConfig(({ mode }) => ({
     minify: false,
     cssCodeSplit: false,
     modulePreload: false,
+    outDir: 'dist',
     rollupOptions: {
-      external: mode === 'development' ? [] : undefined
+      external: mode === 'development' ? [] : undefined,
+      output: {
+        format: 'esm',
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      }
     }
   },
   define: {
@@ -39,7 +46,7 @@ export default defineConfig(({ mode }) => ({
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     }
   },
-  preview: { 
+  preview: {
     port: 5175,
     cors: true,
     headers: {

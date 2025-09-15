@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState } from 'react';
-import { useClientsContext } from './contexts/ClientsContext';
+import { useClientsContext, ClientsProvider } from './contexts/ClientsContext';
 import ClientModal from './components/ClientModal';
 import Sidebar from './components/Sidebar';
 import SelectedClients from './components/SelectedClients';
@@ -60,14 +60,14 @@ const ClientsList: React.FC<ClientsListProps> = ({
 
   return (
     <div className='clients-app'>
-      <Header 
+      <Header
         onMenuClick={onMenuClick}
         onNavigateToSelected={onNavigateToSelected}
         userName={userName}
       />
 
       <div className="main-content">
-        <ContentHeader 
+        <ContentHeader
           clientsCount={clients.length}
           itemsPerPage={itemsPerPage}
           onItemsPerPageChange={onItemsPerPageChange}
@@ -81,7 +81,7 @@ const ClientsList: React.FC<ClientsListProps> = ({
           onAddToSelected={handleAdd}
         />
 
-        <button 
+        <button
           className="create-client-btn"
           onClick={onCreateClient}
         >
@@ -194,7 +194,7 @@ const ClientsApp: React.FC = () => {
     setModalLoading(true);
     try {
       console.log('HandleSaveClient called with:', { mode: modalState.mode, data, client: modalState.client });
-      
+
       if (modalState.mode === 'add') {
         const result = await createClient(data as CreateClientRequest);
         console.log('Client created successfully:', result);
@@ -203,7 +203,7 @@ const ClientsApp: React.FC = () => {
         const result = await updateClient(modalState.client.id, data as UpdateClientRequest);
         console.log('Client updated successfully:', result);
       }
-      
+
       console.log('Closing modal after successful operation');
       handleCloseModal();
     } catch (error) {
@@ -231,7 +231,7 @@ const ClientsApp: React.FC = () => {
     return (
       <div>
         {isSidebarOpen && <div className="sidebar-overlay" onClick={handleSidebarClose} />}
-        <Sidebar 
+        <Sidebar
           isOpen={isSidebarOpen}
           onClose={handleSidebarClose}
           activeItem={activeSidebarItem}
@@ -249,13 +249,13 @@ const ClientsApp: React.FC = () => {
   return (
     <div>
       {isSidebarOpen && <div className="sidebar-overlay" onClick={handleSidebarClose} />}
-      <Sidebar 
+      <Sidebar
         isOpen={isSidebarOpen}
         onClose={handleSidebarClose}
         activeItem={activeSidebarItem}
         onItemClick={handleSidebarItemClick}
       />
-      
+
       {currentView === 'clients' ? (
         <ClientsList
           clients={clients}
@@ -281,7 +281,7 @@ const ClientsApp: React.FC = () => {
           onNavigateToClients={() => setCurrentView('clients')}
         />
       )}
-      
+
       <ClientModal
         isOpen={modalState.isOpen}
         onClose={handleCloseModal}
@@ -295,4 +295,11 @@ const ClientsApp: React.FC = () => {
   );
 };
 
-export default ClientsApp;
+// Wrapper com provider para Module Federation
+const ClientsAppWithProvider: React.FC = () => (
+  <ClientsProvider>
+    <ClientsApp />
+  </ClientsProvider>
+);
+
+export default ClientsAppWithProvider;

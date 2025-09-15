@@ -19,8 +19,15 @@ export default defineConfig(({ mode }) => ({
     minify: false,
     cssCodeSplit: false,
     modulePreload: false,
+    outDir: 'dist',
     rollupOptions: {
-      external: mode === 'development' ? [] : undefined
+      external: mode === 'development' ? [] : undefined,
+      output: {
+        format: 'esm',
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      }
     }
   },
   define: {

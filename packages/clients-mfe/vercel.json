@@ -11,7 +11,7 @@
   ],
   "headers": [
     {
-      "source": "/remoteEntry.js",
+      "source": "/assets/remoteEntry.js",
       "headers": [
         {
           "key": "Cache-Control",
