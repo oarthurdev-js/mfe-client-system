@@ -181,9 +181,6 @@ describe('AuthApp', () => {
     
     await user.type(nameInput, 'Test User')
     
-    // Mock the form submission event
-    const mockPreventDefault = vi.fn()
-    
     // Simulate form submission
     form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
     

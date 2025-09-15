@@ -6,8 +6,8 @@ import federation from "@originjs/vite-plugin-federation";
 
 // URLs de produção para deploy na Vercel
 const PRODUCTION_URLS = {
-  authMfe: "https://auth-bgb7jbv4d-arthur-marques-projects-08ec456b.vercel.app/assets/remoteEntry.js",
-  clientsMfe: "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/assets/remoteEntry.js",
+  authMfe: "https://auth-8nq1b1tbv-arthur-marques-projects-08ec456b.vercel.app/assets/remoteEntry.js",
+  clientsMfe: "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/assets/remoteEntry.js",
   designSystem: "https://design-system-five-hazel.vercel.app/assets/remoteEntry.js"
 };
 

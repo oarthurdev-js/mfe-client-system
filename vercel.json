@@ -6,31 +6,31 @@
   "rewrites": [
     {
       "source": "/logo_teddy.webp",
-      "destination": "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/logo_teddy.webp"
+      "destination": "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/logo_teddy.webp"
     },
     {
       "source": "/menu-hamburguer.png",
-      "destination": "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/menu-hamburguer.png"
+      "destination": "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/menu-hamburguer.png"
     },
     {
       "source": "/plus.png",
-      "destination": "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/plus.png"
+      "destination": "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/plus.png"
     },
     {
       "source": "/pencil.png",
-      "destination": "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/pencil.png"
+      "destination": "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/pencil.png"
     },
     {
       "source": "/trash.png",
-      "destination": "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/trash.png"
+      "destination": "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/trash.png"
     },
     {
       "source": "/minus.png",
-      "destination": "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/minus.png"
+      "destination": "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/minus.png"
     },
     {
       "source": "/close.png",
-      "destination": "https://clients-3xpydirc8-arthur-marques-projects-08ec456b.vercel.app/close.png"
+      "destination": "https://clients-iyqzxeltj-arthur-marques-projects-08ec456b.vercel.app/close.png"
     },
     {
       "source": "/(.*)",
