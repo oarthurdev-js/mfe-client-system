@@ -27,7 +27,19 @@ export default defineConfig(({ mode }) => {
       federation({
         name: "shell",
         remotes: remoteUrls,
-        shared: ["react", "react-dom", "react-router-dom"]
+        shared: {
+          "react": {
+            singleton: true,
+            requiredVersion: "^18.0.0"
+          },
+          "react-dom": {
+            singleton: true,
+            requiredVersion: "^18.0.0"
+          },
+          "react-router-dom": {
+            singleton: true
+          }
+        }
       })
     ],
     build: {
@@ -53,7 +65,12 @@ export default defineConfig(({ mode }) => {
     },
     preview: {
       port: 5173,
-      cors: true
+      cors: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      }
     }
   };
 });

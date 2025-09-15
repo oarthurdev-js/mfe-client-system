@@ -53,26 +53,52 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 }
 
 // Conditional lazy loading with fallbacks
-const AuthApp = React.lazy(() => 
-  import('authMfe/AuthApp').catch(() => {
-    console.warn('AuthApp federation module failed to load, using fallback');
-    return { default: () => <div>Auth module temporarily unavailable</div> };
-  })
-);
+const AuthApp = React.lazy(() => {
+  console.log('Loading AuthApp from:', 'authMfe/AuthApp');
+  return import('authMfe/AuthApp').catch((err) => {
+    console.error('AuthApp federation module failed to load:', err);
+    return { default: () => (
+      <div style={{ padding: '20px', textAlign: 'center' }}>
+        <h3>Auth module temporarily unavailable</h3>
+        <p>Please try refreshing the page</p>
+      </div>
+    )};
+  });
+});
 
-const ClientsApp = React.lazy(() => 
-  import('clientsMfe/ClientsApp').catch(() => {
-    console.warn('ClientsApp federation module failed to load, using fallback');
-    return { default: () => <div>Clients module temporarily unavailable</div> };
-  })
-);
+const ClientsApp = React.lazy(() => {
+  console.log('Loading ClientsApp from:', 'clientsMfe/ClientsApp');
+  return import('clientsMfe/ClientsApp').catch((err) => {
+    console.error('ClientsApp federation module failed to load:', err);
+    return { default: () => (
+      <div style={{ padding: '20px', textAlign: 'center' }}>
+        <h3>Clients module temporarily unavailable</h3>
+        <p>Please try refreshing the page</p>
+      </div>
+    )};
+  });
+});
 
 function App() {
   return(
     <ErrorBoundary>
       <BrowserRouter>
         <div className="min-h-screen bg-gray-100">
-          <Suspense fallback={<div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>}>
+          <Suspense fallback={
+            <div style={{ 
+              padding: '20px', 
+              textAlign: 'center',
+              background: '#f5f5f5',
+              border: '1px solid #ddd',
+              borderRadius: '8px',
+              margin: '20px'
+            }}>
+              <div>Loading microfrontend...</div>
+              <div style={{ fontSize: '12px', color: '#666', marginTop: '10px' }}>
+                Shell is loading the remote modules
+              </div>
+            </div>
+          }>
             <Routes>
               <Route path="/" element={<Navigate to="/auth" replace />} />
               <Route path="/auth/*" element={

@@ -3,6 +3,8 @@
   "outputDirectory": "packages/shell/dist",
   "installCommand": "npm install && npm install @rollup/rollup-linux-x64-gnu --save-dev",
   "framework": "vite",
+  "public": true,
+  "functions": {},
   "rewrites": [
     {
       "source": "/logo_teddy.webp",
@@ -38,48 +40,6 @@
     }
   ],
   "headers": [
-    {
-      "source": "/assets/remoteEntry.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Origin, Content-Type, Accept, Authorization"
-        }
-      ]
-    },
-    {
-      "source": "/remoteEntry.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Origin, Content-Type, Accept, Authorization"
-        }
-      ]
-    },
     {
       "source": "/remoteEntry.js",
       "headers": [
