@@ -183,10 +183,6 @@ describe('AuthApp', () => {
     
     // Mock the form submission event
     const mockPreventDefault = vi.fn()
-    const mockSubmitEvent = {
-      preventDefault: mockPreventDefault,
-      target: form,
-    } as any
     
     // Simulate form submission
     form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
