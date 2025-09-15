@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 import type { Client } from '../types/Client';
 import { getImageUrl, getIconUrl } from '../utils/helpers';

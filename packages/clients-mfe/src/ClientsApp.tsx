@@ -8,10 +8,9 @@ import Header from './components/Header';
 import ClientGrid from './components/ClientGrid';
 import ContentHeader from './components/ContentHeader';
 import Pagination from './components/Pagination';
-import ErrorBoundary from './components/ErrorBoundary';
 import type { Client, CreateClientRequest, UpdateClientRequest } from './types/Client';
 import { getUserName } from './utils/helpers';
-import { VIEW_TYPES, MODAL_MODES } from './constants';
+import { MODAL_MODES } from './constants';
 import './index.css';
 
 interface ClientsListProps {
