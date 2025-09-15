@@ -1,0 +1,77 @@
+# Docker Compose para ambiente de produção
+version: '3.8'
+
+services:
+  # Shell (Host Principal) com balanceamento de carga
+  shell:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: shell-prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Auth MFE
+  auth-mfe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: auth-mfe-prod
+    ports:
+      - "8174:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Clients MFE
+  clients-mfe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: clients-mfe-prod
+    ports:
+      - "8175:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Design System
+  design-system:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: design-system-prod
+    ports:
+      - "8176:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  default:
+    name: mfe-production
+    driver: bridge

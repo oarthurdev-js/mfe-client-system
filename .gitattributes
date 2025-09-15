@@ -1,0 +1,81 @@
+# Git Attributes for MFE Client System
+# Ensures consistent line endings and proper handling of different file types
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Configuration files
+*.config.js text eol=lf
+*.config.ts text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.env* text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Documentation
+*.txt text eol=lf
+README* text eol=lf
+CHANGELOG* text eol=lf
+LICENSE* text eol=lf
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.webp binary
+
+# Fonts
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+*.otf binary
+
+# Archives
+*.zip binary
+*.tar binary
+*.tar.gz binary
+*.7z binary
+
+# Videos
+*.mp4 binary
+*.mov binary
+*.avi binary
+
+# Audio
+*.mp3 binary
+*.wav binary
+*.ogg binary
+
+# Documents
+*.pdf binary
+*.doc binary
+*.docx binary
+
+# Lock files (should be committed)
+package-lock.json text eol=lf
+yarn.lock text eol=lf
+pnpm-lock.yaml text eol=lf
+
+# Ignore merge conflicts in lock files (auto-generate)
+package-lock.json merge=ours
+yarn.lock merge=ours
+pnpm-lock.yaml merge=ours

@@ -1,0 +1,102 @@
+# .dockerignore - Otimizar builds do Docker
+
+# Dependências
+node_modules
+packages/*/node_modules
+**/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Builds e dist
+dist
+build
+.next
+out
+packages/*/dist
+packages/*/build
+
+# Arquivos de desenvolvimento
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+logs
+lerna-debug.log*
+
+# Coverage e testes
+coverage
+*.nyc_output
+.coverage
+test-results
+playwright-report
+
+# IDE e editores
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+.circleci
+
+# Documentação
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# Arquivos temporários
+tmp
+temp
+.tmp
+.temp
+
+# Cache
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+
+# Playwright
+.playwright
+
+# Yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# TypeScript
+*.tsbuildinfo
+
+# Storybook
+.storybook/build
+storybook-static

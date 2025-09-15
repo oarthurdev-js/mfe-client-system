@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState } from 'react';
-import { useClients } from './hooks/useClient';
+import { useClientsContext } from './contexts/ClientsContext';
 import ClientModal from './components/ClientModal';
 import Sidebar from './components/Sidebar';
 import SelectedClients from './components/SelectedClients';
@@ -100,6 +100,7 @@ const ClientsList: React.FC<ClientsListProps> = ({
 };
 
 const ClientsApp: React.FC = () => {
+  const { state, actions } = useClientsContext();
   const {
     clients,
     isLoading,
@@ -107,13 +108,26 @@ const ClientsApp: React.FC = () => {
     currentPage,
     totalPages,
     itemsPerPage,
+    selectedClients,
+    currentView,
+    isSidebarOpen,
+    activeSidebarItem
+  } = state;
+
+  const {
     createClient,
     updateClient,
     deleteClient,
     goToPage,
     changeItemsPerPage,
     refreshClients,
-  } = useClients();
+    addToSelected,
+    removeFromSelected,
+    clearSelected,
+    setCurrentView,
+    setSidebarOpen,
+    setActiveSidebarItem
+  } = actions;
 
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
@@ -126,17 +140,12 @@ const ClientsApp: React.FC = () => {
 
   const [modalLoading, setModalLoading] = useState(false);
 
-  const [activeSidebarItem, setActiveSidebarItem] = useState('clients');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedClients, setSelectedClients] = useState<Client[]>([]);
-  const [currentView, setCurrentView] = useState<'clients' | 'selected'>('clients');
-
   const handleMenuClick = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setSidebarOpen(!isSidebarOpen);
   };
 
   const handleSidebarClose = () => {
-    setIsSidebarOpen(false);
+    setSidebarOpen(false);
   };
 
   const handleSidebarItemClick = (item: string) => {
@@ -163,20 +172,15 @@ const ClientsApp: React.FC = () => {
 
   // Selected clients handlers
   const handleAddToSelected = (client: Client) => {
-    setSelectedClients(prev => {
-      if (prev.find(c => c.id === client.id)) {
-        return prev; // Already selected
-      }
-      return [...prev, client];
-    });
+    addToSelected(client);
   };
 
   const handleRemoveFromSelected = (clientId: number) => {
-    setSelectedClients(prev => prev.filter(c => c.id !== clientId));
+    removeFromSelected(clientId);
   };
 
   const handleClearAllSelected = () => {
-    setSelectedClients([]);
+    clearSelected();
   };
 
   const handleOpenModal = (mode: 'add' | 'edit' | 'delete', client?: Client) => {
@@ -256,7 +260,7 @@ const ClientsApp: React.FC = () => {
       {currentView === 'clients' ? (
         <ClientsList
           clients={clients}
-          onDeleteClient={(id) => handleOpenModal('delete', clients.find(c => c.id === id))}
+          onDeleteClient={(id) => handleOpenModal('delete', clients.find((c: Client) => c.id === id))}
           onCreateClient={() => handleOpenModal('add')}
           onEditClient={(client) => handleOpenModal('edit', client)}
           onAddToSelected={handleAddToSelected}

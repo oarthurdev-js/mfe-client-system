@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useState, useEffect } from 'react';
 import { apiService } from '../shared/services/api';
 import type { Client, CreateClientRequest, UpdateClientRequest } from '../types/Client';
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Client } from '../types/Client';
+import { getIconUrl } from '../utils/helpers';
 
 interface ClientCardProps {
   client: Client;
@@ -7,14 +8,6 @@ interface ClientCardProps {
   onDelete: (client: Client) => void;
   onAddToSelected: (client: Client) => void;
 }
-
-// Helper function to get icon URLs
-const getIconUrl = (iconName: string) => {
-  const baseUrl = window.location.port === '5173' 
-    ? 'http://localhost:5175' // When accessed via shell
-    : ''; // When accessed directly
-  return `${baseUrl}/${iconName}`;
-};
 
 const ClientCard: React.FC<ClientCardProps> = ({
   client,

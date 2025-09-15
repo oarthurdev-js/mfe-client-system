@@ -1,0 +1,94 @@
+{
+  "buildCommand": "npm run build --workspace=packages/shell",
+  "outputDirectory": "packages/shell/dist",
+  "installCommand": "npm install && npm install @rollup/rollup-linux-x64-gnu --save-dev",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/logo_teddy.webp",
+      "destination": "https://clients-mfe.vercel.app/logo_teddy.webp"
+    },
+    {
+      "source": "/menu-hamburguer.png",
+      "destination": "https://clients-mfe.vercel.app/menu-hamburguer.png"
+    },
+    {
+      "source": "/plus.png",
+      "destination": "https://clients-mfe.vercel.app/plus.png"
+    },
+    {
+      "source": "/pencil.png",
+      "destination": "https://clients-mfe.vercel.app/pencil.png"
+    },
+    {
+      "source": "/trash.png",
+      "destination": "https://clients-mfe.vercel.app/trash.png"
+    },
+    {
+      "source": "/minus.png",
+      "destination": "https://clients-mfe.vercel.app/minus.png"
+    },
+    {
+      "source": "/close.png",
+      "destination": "https://clients-mfe.vercel.app/close.png"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/remoteEntry.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Origin, Content-Type, Accept, Authorization"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ],
+  "name": "mfe-shell"
+}

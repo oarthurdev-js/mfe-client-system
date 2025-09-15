@@ -3,25 +3,45 @@
  * Handles both standalone and federated contexts
  */
 export const getImageUrl = (imageName?: string): string => {
-  const baseUrl = window.location.port === '5173' 
-    ? 'http://localhost:5175' // When accessed via shell
-    : ''; // When accessed directly
+  const isProduction = window.location.hostname !== 'localhost';
+  const isShellContext = window.location.hostname.includes('mfe-shell') || 
+                         window.location.hostname.includes('shell') ||
+                         window.location.port === '5173';
   
   const defaultImage = 'logo_teddy.webp';
   const image = imageName || defaultImage;
   
-  return `${baseUrl}/${image}`;
+  if (isProduction && isShellContext) {
+    // When accessed through shell in production, use relative URLs (shell proxies them)
+    return `/${image}`;
+  } else if (!isProduction && isShellContext) {
+    // When accessed through shell in development, use clients-mfe URL
+    return `http://localhost:5175/${image}`;
+  } else {
+    // When accessed directly (standalone), use relative URLs
+    return `/${image}`;
+  }
 };
 
 /**
  * Helper function to get icon URLs for federation
  */
 export const getIconUrl = (iconName: string): string => {
-  const baseUrl = window.location.port === '5173' 
-    ? 'http://localhost:5175' // When accessed via shell
-    : ''; // When accessed directly
+  const isProduction = window.location.hostname !== 'localhost';
+  const isShellContext = window.location.hostname.includes('mfe-shell') || 
+                         window.location.hostname.includes('shell') ||
+                         window.location.port === '5173';
   
-  return `${baseUrl}/${iconName}`;
+  if (isProduction && isShellContext) {
+    // When accessed through shell in production, use relative URLs (shell proxies them)
+    return `/${iconName}`;
+  } else if (!isProduction && isShellContext) {
+    // When accessed through shell in development, use clients-mfe URL
+    return `http://localhost:5175/${iconName}`;
+  } else {
+    // When accessed directly (standalone), use relative URLs
+    return `/${iconName}`;
+  }
 };
 
 /**

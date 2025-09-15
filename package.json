@@ -1,0 +1,50 @@
+{
+  "name": "mfe-client-system",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:shell\" \"npm run dev:auth\" \"npm run dev:clients\" \"npm run dev:design\"",
+    "dev:design": "npm run dev --workspace=packages/design-system",
+    "dev:mfe": "concurrently \"npm run dev:auth\" \"npm run dev:clients\" \"npm run dev:shell\"",
+    "dev:fed": "concurrently \"npm run dev:auth\" \"npm run dev:clients\" \"npm run dev:design\" \"sleep 3 && npm run dev:shell\"",
+    "start:mfe": "concurrently \"npm run preview:auth\" \"npm run preview:clients\" \"npm run preview:design\" \"sleep 8 && npm run dev:shell\"",
+    "start:mfe:script": "./start-mfe.sh",
+    "start:mfe:win": "powershell -ExecutionPolicy Bypass -File start-mfe.ps1",
+    "stop:all": "lsof -ti:5173,5174,5175,5176 | xargs kill -9 2>/dev/null || true",
+    "build:dev:auth": "npm run build --workspace=packages/auth-mfe && npm run preview --workspace=packages/auth-mfe",
+    "build:dev:clients": "npm run build --workspace=packages/clients-mfe && npm run preview --workspace=packages/clients-mfe",
+    "build:dev:design": "npm run build --workspace=packages/design-system && npm run preview --workspace=packages/design-system",
+    "build": "npm run build --workspaces",
+    "dev:shell": "npm run dev --workspace=packages/shell",
+    "dev:auth": "npm run dev --workspace=packages/auth-mfe",
+    "dev:clients": "npm run dev --workspace=packages/clients-mfe",
+    "build:watch:auth": "npm run build:watch --workspace=packages/auth-mfe",
+    "build:watch:clients": "npm run build:watch --workspace=packages/clients-mfe",
+    "build:watch:design": "npm run build:watch --workspace=packages/design-system",
+    "preview:auth": "npm run build --workspace=packages/auth-mfe && npm run preview --workspace=packages/auth-mfe",
+    "preview:clients": "npm run build --workspace=packages/clients-mfe && npm run preview --workspace=packages/clients-mfe",
+    "preview:design": "npm run build --workspace=packages/design-system && npm run preview --workspace=packages/design-system",
+    "lint": "yarn workspaces run lint",
+    "lint:fix": "yarn workspaces run lint:fix",
+    "lint:shell": "yarn workspace shell lint",
+    "lint:auth": "yarn workspace auth-mfe lint",
+    "lint:clients": "yarn workspace clients-mfe lint",
+    "lint:design": "yarn workspace design-system lint",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "npm run test:unit --workspaces",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:install": "playwright install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.8.0"
+  },
+  "dependencies": {
+    "axios": "^1.11.0"
+  }
+}

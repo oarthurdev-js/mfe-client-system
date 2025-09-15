@@ -1,0 +1,30 @@
+# Template de Mensagem de Commit do Sistema MFE Client
+#
+# Formato:
+# <tipo>(<escopo>): <assunto>
+#
+# <corpo>
+#
+# <rodapé>
+
+# Tipo: feat, fix, docs, style, refactor, test, chore, perf
+# Escopo: auth, clients, design-system, shell, shared, build, ci
+# Assunto: Descrição breve (máx 50 caracteres)
+# Corpo: Explicação detalhada (quebrar em 72 caracteres)
+# Rodapé: Breaking changes, referências de issues
+
+# Exemplos:
+# feat(clients): adiciona funcionalidade de busca de clientes
+# fix(auth): resolve problema de redirecionamento no login
+# docs: atualiza README com instruções de teste
+# test(clients): adiciona testes unitários para hook useClients
+# chore(deps): atualiza dependências para versões mais recentes
+
+# Lembre-se:
+# - Use tempo presente ("adiciona" não "adicionou")
+# - Use modo imperativo ("move" não "moves")
+# - Não capitalize primeira letra do assunto
+# - Não termine linha do assunto com ponto
+# - Separe assunto do corpo com linha em branco
+# - Quebre corpo em 72 caracteres
+# - Use corpo para explicar o que e por que, não como

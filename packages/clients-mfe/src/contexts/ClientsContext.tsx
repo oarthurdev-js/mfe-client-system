@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import type { Client, CreateClientRequest, UpdateClientRequest } from '../types/Client';
-import { apiService } from '../../../shared/services/api';
+import { apiService } from '../shared/services/api';
 
 // State interface
 interface ClientsState {

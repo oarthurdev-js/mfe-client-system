@@ -1,5 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
-import type { Client, ClientsResponse, CreateClientRequest, UpdateClientRequest } from '../src/types/Client';
+import type { Client, ClientsResponse, CreateClientRequest, UpdateClientRequest } from '../../types/Client';
 
 const API_BASE_URL = 'https://boasorte.teddybackoffice.com.br';
 

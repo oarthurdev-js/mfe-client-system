@@ -1,26 +1,11 @@
 import React from 'react';
+import { getImageUrl, getIconUrl } from '../utils/helpers';
 
 interface HeaderProps {
   onMenuClick: () => void;
   onNavigateToSelected: () => void;
   userName: string;
 }
-
-// Helper function to get the correct image URL for federation
-const getImageUrl = () => {
-  const baseUrl = window.location.port === '5173' 
-    ? 'http://localhost:5175' // When accessed via shell
-    : ''; // When accessed directly
-  return `${baseUrl}/logo_teddy.webp`;
-};
-
-// Helper function to get icon URLs
-const getIconUrl = (iconName: string) => {
-  const baseUrl = window.location.port === '5173' 
-    ? 'http://localhost:5175' // When accessed via shell
-    : ''; // When accessed directly
-  return `${baseUrl}/${iconName}`;
-};
 
 const Header: React.FC<HeaderProps> = ({ 
   onMenuClick, 
@@ -46,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({
         <div className='logo'>
           <a href="/clients">
             <img 
-              src={getImageUrl()} 
+              src={getImageUrl('logo_teddy.webp')} 
               alt="Teddy" 
               style={{ maxHeight: '40px', maxWidth: '120px' }}
             />

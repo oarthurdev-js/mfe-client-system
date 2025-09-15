@@ -128,3 +128,16 @@
     padding: 40px 20px;
   }
 }
+
+.action-btn-exclude {
+  background-color: transparent;
+  border: none;
+}
+
+
+.client-actions-selected {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+}
